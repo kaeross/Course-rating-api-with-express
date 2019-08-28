@@ -5,14 +5,17 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const CourseSchema = new Schema ({
+    _id: ObjectId,
     user: {
-        type: ObjectId
+        type: ObjectId,
+        ref: 'User'
     },
-    title: { 
+    title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    description: { 
+    description: {
         type: String,
         required: true
     },
@@ -35,7 +38,10 @@ const CourseSchema = new Schema ({
             }
         },
     ],
-    reviews: [ObjectId]
+    reviews: [{
+        type: ObjectId,
+        ref: 'Review'
+    }]
 });
 
 module.exports.Course= mongoose.model('Course', CourseSchema)

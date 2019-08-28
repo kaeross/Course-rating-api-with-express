@@ -5,9 +5,11 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const ReviewSchema = new Schema({
+    _id: ObjectId,
     user: {
         type: ObjectId,
-        required: true
+        required: true,
+        ref: 'User'
     },
     rating: {
         type: Number,
