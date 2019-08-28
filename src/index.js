@@ -3,7 +3,8 @@
 // load modules
 const express = require('express');
 const morgan = require('morgan');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const api = require('./api');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.set('port', process.env.PORT || 5000);
 app.use(morgan('dev'));
 
 // TODO add additional routes here
+app.use('/api', api);
 
 // send a friendly greeting for the root route
 app.get('/', (req, res) => {
